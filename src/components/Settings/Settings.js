@@ -17,11 +17,12 @@ class Settings extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            theme: 'light'
+            theme: 'light',
+            changed: false
         }
     }
     handleSelectChange= (event, index, value) => {
-        this.setState({theme:value});
+        this.setState({theme:value, changed:true});
     }
     implementSettings = () => {
         this.props.history.push('/');
@@ -124,6 +125,7 @@ class Settings extends React.Component {
               <RaisedButton
                 label='Save'
                 backgroundColor={colors.header}
+                disabled={!this.state.changed}
                 labelColor='#fff'
                 onClick={this.handleSubmit}
               />
